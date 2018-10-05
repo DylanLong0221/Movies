@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  margin: 10px 10% 0 10%;
 }
 
 .Movies {
@@ -28,7 +29,7 @@ opacity: 0;
   opacity: 1;
   cursor: pointer;
   color: #00FF66;
-  font-size: 30px;
+  font-size: 150%;
   font-weight: bold;
   margin: 0 5px 0 5px;
 }
