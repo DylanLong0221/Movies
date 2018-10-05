@@ -1,26 +1,48 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Movie from './components/movies';
+import axios from 'axios';
+import Header from './components/header';
+import Search from './components/searchbar';
 
 class App extends Component {
+
+  state={
+    movies: []
+  }
+
+  componentDidMount() {
+    axios.get('https://api.themoviedb.org/3/movie/now_playing?api_key=3b444fbb10b743aa99e6a4f27af457d9&language=en-US&page=1')
+    .then(response => {
+      this.setState({movies: response.data.results});
+      console.log(this.state.movies);
+    }); 
+  }
+
+
   render() {
+    const movies = this.state.movies.map(movie => {
+      return (<Movie title={movie.title} 
+      key={movie.id} 
+      img={"https://image.tmdb.org/t/p/w300/" + movie.poster_path} 
+      date={movie.release_date}
+       />
+       )
+    })
+
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+    <div className="App">
+    <header>
+      <Header/>
+    </header>
+    <hr/>
+      <main>
+          <Search/>
+          <h1>Now Playing</h1>
+          {movies}
+      </main>
+    </div>
     );
   }
 }
