@@ -64,3 +64,26 @@ opacity: 0;
   position: absolute;
   right: 80%;
 }
+
+/*Overlay details/credits*/
+
+.Overlay {
+  height: 900px;
+  width: 900px;
+  opacity: .9;
+  left: 25%;
+  position: fixed;
+  z-index: 100;
+  background-color: yellow;
+}
+
+.OverlayBackground {
+  background-color: #433A3A;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0.6;
+  height: 100vh;
+  width: 100%;
+  z-index: 99;
+}

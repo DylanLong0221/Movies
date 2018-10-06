@@ -11,6 +11,10 @@ class App extends Component {
 
   state={
     movies: [],
+    //for overlay should be changed to true when onclick is fired so 
+    // the overlay is popped up with specefic id
+    movieClicked: false,
+    movieId: '',
   }
 
   //getting movies playing now + putting into movies state
@@ -21,10 +25,17 @@ class App extends Component {
     }); 
   }
 
-  //getting id from movie when clicked so overlay will be the right id
+  //getting id from movie when clicked so overlay will be the right id set previos state
     showOverlay = (e) => {
     console.log(e);
+    this.setState({movieId: e.id})
+    this.setState({movieClicked: true});
   }
+
+    hideOverlay = (e) => {
+      this.setState({movieClicked: false});
+      this.setState({movieId: ''});
+    }
 
   render() {
     //maping through the movies and displaying them as a list item with multiple props for imgs etc.
@@ -38,20 +49,25 @@ class App extends Component {
        />
        )
     });
+    let overlay
+    if(this.state.movieClicked){
+      overlay = <OverlayDetails clicked={this.hideOverlay}/>
+    }
+
     //trying to break everything up as much as possible without creating to many stateful components
     return (
-    <div className="App">
-    <header>
-      <Header/>
-    </header>
-    <hr/>
-      <main>
-          <OverlayDetails/>
-          <Search clicked={this.showOverlay}/>
-          <h1>Now Playing</h1>
-          {movies}
-      </main>
-    </div>
+      <div className="App">
+      <header>
+        <Header/>
+      </header>
+      <hr/>
+        <main>
+            {overlay}
+            <Search clicked={this.showOverlay}/>
+            <h1>Now Playing</h1>
+            {movies}
+        </main>
+      </div>
     );
   }
 }

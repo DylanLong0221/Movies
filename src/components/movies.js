@@ -15,4 +15,4 @@ const movies = (props) => {
 }
 
 export default movies;
-//change a to div or something else 
+//change a to div or something else  span

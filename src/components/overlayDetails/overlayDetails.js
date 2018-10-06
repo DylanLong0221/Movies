@@ -4,7 +4,8 @@ import React from 'react';
 
 const overlayDetails = (props) => (
 	<div>
-
+		<div className="OverlayBackground" onClick={props.clicked}></div>
+		<div className="Overlay"></div>
 	</div>
 	);
 	
