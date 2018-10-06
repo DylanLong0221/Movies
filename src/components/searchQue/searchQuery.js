@@ -1,16 +1,23 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+
 import SearchBar from './searchbar';
 
 class SearchQuery extends Component {
 	state = {
-		searchQue: ""
+		searchQue: "",
+		results: []
 	}
 
-	componentDidMount(){
-		console.log("test");
-	}
-
+	 componentDidUpdate() {
+	  	let searchQue = "https://api.themoviedb.org/3/search/multi?api_key=3b444fbb10b743aa99e6a4f27af457d9&language=en-US&query=" + this.state.searchQue + "&page=1&include_adult=false";
+	  	if(this.state.searchQue.length > 0){
+	  		axios.get(searchQue)
+	  		.then(response => {
+	  			console.log(response);
+	  		})
+     	}
+	 }
 
 	searchBarQue = (event) => {
 		this.setState({searchQue: event.target.value});
@@ -39,16 +46,3 @@ export default SearchQuery;
   //      />
  //      )
  //   });
-
-
-//  searchBarQue = (event) => {
- //   this.setState({searchQue: event.target.value});
-  //  let searchQue = "https://api.themoviedb.org/3/search/multi?api_key=3b444fbb10b743aa99e6a4f27af457d9&language=en-US&query=" + this.state.searchQue + "&page=1&include_adult=false";
-
-  //  axios.get(searchQue)
-  //  .then(response => {
- //     this.setState({results: response.data.results});
- //     console.log(this.state.results);
- //   })
-  
- // }

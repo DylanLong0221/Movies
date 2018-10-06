@@ -19,7 +19,6 @@ class App extends Component {
     }); 
   }
 
-
   render() {
     const movies = this.state.movies.map(movie => {
       return (<Movie title={movie.title} 
