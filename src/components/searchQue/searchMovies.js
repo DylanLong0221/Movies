@@ -7,7 +7,7 @@ const searchMovies = (props) => {
 		<div>
 			<ul>
 				<li>
-				<img style={{width: '50px', height: "50px"}} src={props.img} alt="test"/>
+				<img style={{width: '50px', height: "50px"}} src={props.img} />
 				{props.title}
 				</li>
 			</ul>
