@@ -15,6 +15,9 @@ class App extends Component {
     // the overlay is popped up with specefic id
     movieClicked: false,
     movieId: '',
+    creditsResults: [],
+    image: "",
+    title: ""
   }
 
   //getting movies playing now + putting into movies state
@@ -24,18 +27,41 @@ class App extends Component {
       this.setState({movies: response.data.results});
     }); 
   }
+  // movie overlay cast etc...
+  componentDidUpdate() {
+      let searchQue = "https://api.themoviedb.org/3/movie/" + this.state.movieId + "/credits?api_key=3b444fbb10b743aa99e6a4f27af457d9";
+      if(this.state.movieClicked){
+        axios.get(searchQue)
+        .then(response => {
+          // if(this.state.movieId === response.data.id){
+          //   return
+          // }
+          // else{
+          // this.setState({creditsResults: response.data});
+             console.log(response)
+          // }
+        })
+      }
+   }
 
-  //getting id from movie when clicked so overlay will be the right id set previos state
+  //getting id from movie when clicked so overlay will be the right id set previos state--overlay settings 
     showOverlay = (e) => {
-    console.log(e);
-    this.setState({movieId: e.id})
-    this.setState({movieClicked: true});
+    this.setState({
+      movieId: e.id,
+      image: e.img,
+      title: e.title,
+      movieClicked: true
+    });
   }
 
-    hideOverlay = (e) => {
-      this.setState({movieClicked: false});
-      this.setState({movieId: ''});
-    }
+   hideOverlay = (e) => {
+    this.setState({
+      movieClicked: false,
+      movieId: '',
+      title: '',
+      image: ''
+    });
+   }
 
   render() {
     //maping through the movies and displaying them as a list item with multiple props for imgs etc.
@@ -49,9 +75,16 @@ class App extends Component {
        />
        )
     });
+
+    //if state of overlay is true then overlay is true
     let overlay
     if(this.state.movieClicked){
-      overlay = <OverlayDetails clicked={this.hideOverlay}/>
+      overlay = <OverlayDetails 
+      clicked={this.hideOverlay} 
+      img={this.state.image}
+      title={this.state.title}
+      cast={this.state.creditsResults}
+      />
     }
 
     //trying to break everything up as much as possible without creating to many stateful components
@@ -73,3 +106,5 @@ class App extends Component {
 }
 
 export default App;
+
+// need a if statement for results 
