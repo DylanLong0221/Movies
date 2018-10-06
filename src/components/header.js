@@ -1,5 +1,5 @@
 import React from 'react';
-	
+//simple header for header..simple inline styles 
 const header = () => (
 	<div>
 		<h1 style={{display:'inline', marginRight: '50%', fontSize: "140%"}}>WebSite Made By: Dylan Long</h1>

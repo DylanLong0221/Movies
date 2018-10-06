@@ -1,8 +1,9 @@
+/*main css for page*/
 .App {
   text-align: center;
   margin: 10px 10% 0 10%;
 }
-
+/*Movies that are first listed (Now Showing)*/
 .Movies {
   display: inline-block;
   margin: 30px;
@@ -33,4 +34,33 @@ opacity: 0;
   font-weight: bold;
   margin: 0 5px 0 5px;
 }
+/*Searched Movies in search bar*/
+.listItems{
+  list-style-type: none;
+  background-color: grey;
+  margin: 0;
+  padding: 0;
+  border: 1px solid black;
+  width: 50.2%;
+  position: relative;
+  left: 24.8%;
+  height: 150px;
+}
 
+.listItems:hover {
+  background-color: yellow;
+  cursor: pointer;
+  color: green;
+}
+
+.listItems li {
+  font-size: 200%;
+
+}
+
+.moviePictures{
+  width: 100px;
+  height: 150px;
+  position: absolute;
+  right: 80%;
+}
