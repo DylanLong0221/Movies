@@ -5,7 +5,7 @@ const movies = (props) => {
 	return(
 		<div className="Movies" onClick={() => props.clicked(props)}>
 			<div className="Hovered">
-				<a href="/"><img src={props.img} alt="movie" /></a>
+				<span><img src={props.img} alt="movie" /></span>
 				<p>{props.title}</p>
 				<p>{props.date}</p>
 			</div>

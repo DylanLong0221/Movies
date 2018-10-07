@@ -15,9 +15,10 @@ class App extends Component {
     // the overlay is popped up with specefic id
     movieClicked: false,
     movieId: '',
-    creditsResults: [],
+    creditsResults: null,
     image: "",
-    title: ""
+    title: "",
+    date: ""
   }
 
   //getting movies playing now + putting into movies state
@@ -28,18 +29,17 @@ class App extends Component {
     }); 
   }
   // movie overlay cast etc...
-  componentDidUpdate() {
+  componentDidUpdate(prevState) {
       let searchQue = "https://api.themoviedb.org/3/movie/" + this.state.movieId + "/credits?api_key=3b444fbb10b743aa99e6a4f27af457d9";
       if(this.state.movieClicked){
         axios.get(searchQue)
         .then(response => {
-          // if(this.state.movieId === response.data.id){
-          //   return
-          // }
-          // else{
-          // this.setState({creditsResults: response.data});
-             console.log(response)
-          // }
+          if(this.state.creditsResults){
+            return
+           }
+          else{
+            this.setState({creditsResults: response.data});
+           }
         })
       }
    }
@@ -50,7 +50,8 @@ class App extends Component {
       movieId: e.id,
       image: e.img,
       title: e.title,
-      movieClicked: true
+      movieClicked: true,
+      date: e.date
     });
   }
 
@@ -59,7 +60,9 @@ class App extends Component {
       movieClicked: false,
       movieId: '',
       title: '',
-      image: ''
+      image: '',
+      creditsResults: null,
+      date: ''
     });
    }
 
@@ -75,6 +78,7 @@ class App extends Component {
        />
        )
     });
+    //actors that we will pass as props
 
     //if state of overlay is true then overlay is true
     let overlay
@@ -84,6 +88,8 @@ class App extends Component {
       img={this.state.image}
       title={this.state.title}
       cast={this.state.creditsResults}
+      close={this.hideOverlay}
+      date={this.state.date}
       />
     }
 
@@ -106,5 +112,3 @@ class App extends Component {
 }
 
 export default App;
-
-// need a if statement for results 
