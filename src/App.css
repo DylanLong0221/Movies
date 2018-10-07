@@ -100,3 +100,17 @@ opacity: 0;
   cursor: pointer;
   color: #C70000;
 }
+
+.castMem {
+  display: inline-block;
+  margin-top: 50px;
+}
+
+.castMem img {
+  width: 150px;
+  height: 200px;
+}
+
+.castMem h1 {
+  font-size: 20px;
+}
